@@ -1,0 +1,155 @@
+// Global Variables
+$primary: #ff5a00;
+$secondary: #6e6964;
+
+.navbar-inverse{
+  height: 60px;
+}
+
+.logo {
+  margin-top: 5px;
+}
+
+.navbar-nav {
+  padding-top: 5px !important;
+}
+
+.razrlogo img{
+  width: 100%;
+  margin-top: 250px;
+}
+
+.title h1 {
+  font-size: 72px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 30px;
+  color: $primary;
+}
+
+.home {
+  margin-top: 60px;
+}
+
+
+/* CIRCLE SECTION */
+
+.circleSection h2 {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.circleSection input {
+  text-align: center;
+  width: 100%;
+  height: 35px;
+  margin-top: 10px;
+}
+
+.circleSection button {
+  margin-top: 20px;
+  width: 100%;
+  height: 37px;
+  color: white;
+  border: none;
+  border-radius: 0;
+  background-color: $primary;
+}
+
+#results {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.circleDiv {
+  width: auto;
+  height: auto;
+  margin-top: 20px;
+}
+
+.circleSection .circle {
+  background: $primary;
+  border-radius: 50%;
+  margin: 0 auto 70px auto;
+}
+
+
+/* SQUARE SECTION */
+.squareSection h2 {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.squareSection input {
+  text-align: center;
+  width: 49%;
+  height: 35px;
+  margin-top: 10px;
+}
+
+.squareSection button {
+  margin-top: 20px;
+  width: 100%;
+  height: 37px;
+  color: white;
+  border: none;
+  border-radius: 0;
+  background-color: $primary;
+}
+
+.squareDiv {
+  width: auto;
+  height: auto;
+  margin-top: 20px;
+}
+
+.squareSection .square {
+  background: $primary;
+  margin: 0 auto 70px auto;
+}
+
+/* SORTING SECTION */
+.sortingSection h2 {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.sortingSection p {
+  text-align: center;
+}
+
+.sortingSection input {
+  text-align: center;
+  width: 49%;
+  height: 35px;
+  margin-top: 10px;
+}
+
+.sortingSection button {
+  margin-top: 20px;
+  width: 100%;
+  height: 37px;
+  color: white;
+  border: none;
+  border-radius: 0;
+  background-color: $primary;
+}
+
+
+footer {
+  height: 40px;
+  padding-top: 12px;
+  text-align: center;
+  color: rgb(145, 145, 145);
+  font-weight: 200;
+  background-color: #1b1b1b;
+  background-image: -moz-linear-gradient(top, #222222, #111111);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));
+  background-image: -webkit-linear-gradient(top, #222222, #111111);
+  background-image: -o-linear-gradient(top, #222222, #111111);
+  background-image: linear-gradient(to bottom, #222222, #111111);
+  background-repeat: repeat-x;
+  border-color: #252525;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
+}
