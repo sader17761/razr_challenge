@@ -16,6 +16,7 @@ myApp.controller('SortingController', function($location){
       var numSquares = $("#numSquaresInput").val();
       console.log(numCircles);
       console.log(numSquares);
+      createCircles(numCircles, nu);
       // creates an instance of our circle constructor based on user input
       //var newSquare = new square(userWidth, userHeight);
       // displays square information to the DOM
@@ -27,6 +28,25 @@ myApp.controller('SortingController', function($location){
       //$('.squareDiv').append($square);
     });
   }
+
+  function createCircles(num){
+    for (var i = 1; i < num.length; i++) {
+
+    }
+  }
+
+  function square(width, height) {
+      this.width = width;
+      this.height = height;
+      this.getArea = function () {
+        // pi times radius squared
+          return this.width * this.height;
+      };
+      this.toString = function () {
+        // returns a string
+          return 'Square: Size = ' + this.width + ' x ' + this.height + ', Area = ' + this.getArea();
+      };
+  } // end of square function
 
 
 }); // end SortingController

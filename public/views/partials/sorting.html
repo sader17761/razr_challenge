@@ -2,9 +2,33 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <h2>The Sorting Function</h2>
-      <p>Enter the number of Cirles and Squares you wish to sort.</p>
-      <input id="numCirclesInput" type="number" placeholder="Number of Circles">
-      <input id="numSquaresInput" type="number" placeholder="Number of Squares">
-      <button class="btn btn-default" id="sortBtn">Sort</button>
-    </div>
-</div>
+      <p>Enter the number of Cirles and Squares you wish to sort (descending by area).</p>
+      <input id="numCirclesInput" ng-model="dc.numCircles" type="number" placeholder="Number of Circles">
+      <input id="numSquaresInput" ng-model="dc.numSquares" type="number" placeholder="Number of Squares">
+      <button class="btn btn-default" id="sortBtn" ng-click="dc.checkSortInputs(dc.numCircles, dc.numSquares)">Sort</button>
+    </div> <!-- end col-md-6 -->
+  </div> <!-- end row -->
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <table class="table" ng-if="dc.sortAreaArray.length != 0">
+        <thead>
+          <tr>
+            <th>Index</th>
+            <th>Type</th>
+            <th>Radius/Length</th>
+            <th>Area</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="shape in dc.sortAreaArray">
+            <td>{{dc.sortAreaArray.indexOf(shape)+1}}</td>
+            <td>{{shape.type}}</td>
+            <td ng-if="shape.radius">Radius = {{shape.radius}}</td>
+            <td ng-if="shape.length">Length = {{shape.length}}</td>
+            <td>{{shape.area}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div> <!-- end col-md-6 -->
+  </div> <!-- end row -->
+</div> <!-- end container sortingSection -->

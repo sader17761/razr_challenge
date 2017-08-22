@@ -5,12 +5,15 @@ myApp.config(function ($routeProvider) {
     templateUrl: 'views/partials/home.html',
   }).when('/circle', {
     templateUrl: 'views/partials/circle.html',
-    controller: 'CircleController as cc'
+    controller: 'DefaultController as dc'
   }).when('/square', {
     templateUrl: 'views/partials/square.html',
-    controller: 'SquareController as sc'
+    controller: 'DefaultController as dc'
   }).when('/sorting', {
     templateUrl: 'views/partials/sorting.html',
-    controller: 'SortingController as sqc'
+    controller: 'DefaultController as dc'
+  }).when('/generate', {
+    templateUrl: 'views/partials/generate.html',
+    controller: 'DefaultController as dc'
   });
 });
