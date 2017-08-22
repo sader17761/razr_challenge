@@ -1,7 +1,15 @@
 var myApp = angular.module('myApp');
 
-myApp.controller('DefaultController', function(){
+myApp.controller('DefaultController', function($interval){
   vm = this;
+
+  var degrees = 0;
+
+  var intervalID = setInterval(function() {
+    vm.clearDiv();
+    vm.randomGenerator();
+    vm.rotate();
+  }, 500);
 
   // array that will hold random sized circle/square objects
   vm.sortAreaArray = [];
@@ -141,10 +149,17 @@ myApp.controller('DefaultController', function(){
     } // end of for loop
   }; // end of randomGenerator function
 
+  vm.rotate = function(){
+    $(".randSquare").css({'transform': 'rotate(' + degrees + 'deg)'});
+    degrees += 10;
+  };
+
   // clears all display divs
   vm.clearDiv = function(){
     $('.circle').remove();
     $('.square').remove();
+    $('.randCircle').remove();
+    $('.randSquare').remove();
   };
 
   // clears all user inputs
