@@ -5,7 +5,8 @@ myApp.controller('DefaultController', function($interval){
 
   var degrees = 0;
 
-  var intervalID = setInterval(function() {
+  // regenerates circles and squares twice every second, and rotates the squares 10 degrees each regen.
+  vm.interval = setInterval(function() {
     vm.clearDiv();
     vm.randomGenerator();
     vm.rotate();
@@ -128,6 +129,7 @@ myApp.controller('DefaultController', function($interval){
     });
   }; //end of createObjArray function
 
+  // generates 50 random sized squares and circles and displays them to the DOM
   vm.randomGenerator = function(){
     for (var i = 1; i <= 100; i++) {
       var ranOrder = Math.floor((Math.random() * 100) + 1);
@@ -149,6 +151,7 @@ myApp.controller('DefaultController', function($interval){
     } // end of for loop
   }; // end of randomGenerator function
 
+  // rotates the squares 10 degrees each time it's called.
   vm.rotate = function(){
     $(".randSquare").css({'transform': 'rotate(' + degrees + 'deg)'});
     degrees += 10;
