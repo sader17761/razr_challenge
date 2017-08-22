@@ -3,11 +3,13 @@ var myApp = angular.module('myApp');
 myApp.controller('DefaultController', function($interval){
   vm = this;
 
+  // stores the rotation of the squares on generate.html
   var degrees = 0;
 
   // regenerates circles and squares twice every second, and rotates the squares 10 degrees each regen.
   vm.interval = setInterval(function() {
-    vm.clearDiv();
+    $('.randCircle').remove();
+    $('.randSquare').remove();
     vm.randomGenerator();
     vm.rotate();
   }, 500);
@@ -65,7 +67,7 @@ myApp.controller('DefaultController', function($interval){
       string: newCircle.toString()
     };
     var $circle = $('<div class="circle" style="width: ' +
-    radius + 'px; height: ' + radius + 'px";></div>');
+    (radius * 2) + 'px; height: ' + (radius * 2) + 'px";></div>');
     // appends div(circle) to the DOM
     $('.circleDiv').append($circle);
     vm.clearInputs();
@@ -110,23 +112,42 @@ myApp.controller('DefaultController', function($interval){
       alert('Please enter values greater than 0.');
       vm.clearInputs();
     } else {
+      vm.clearDiv();
+      vm.sortAreaArray = [];
       vm.createObjArray(numCircles, numSquares);
     } // end of if/else
   }; // end of checkSortInputs function
 
   // takes in inputs from user and creates random sized circles and squares and adds them to an array which gets displayed and sorted by area in descending order.
   vm.createObjArray = function(numCircles, numSquares){
+    // for loop that randomly generates circles
     for (var i = 1; i <= numCircles; i++) {
       var ranRadius = Math.floor((Math.random() * 100) + 1);
       vm.sortAreaArray.push(vm.createCircle(ranRadius));
     } // end of circle for loop
+    // for loop that randomly generates squares
     for (var y = 1; y <= numSquares; y++) {
       var ranLength = Math.floor((Math.random() * 100) + 1);
       vm.sortAreaArray.push(vm.createSquare(ranLength));
     } // end of square for loop
+    // sorts objects and orders them from large to small based on area.
     vm.sortAreaArray.sort(function(a, b) {
       return parseFloat(b.area) - parseFloat(a.area);
     });
+    // loop through array and displays objects to the DOM
+    for (var z = 0; z < vm.sortAreaArray.length; z++) {
+      if(vm.sortAreaArray[z].type === 'Circle'){
+        var $sortCircle = $('<div class="sortCircle" style="width: ' +
+        (vm.sortAreaArray[z].radius * 2) + 'px; height: ' + (vm.sortAreaArray[z].radius * 2) + 'px";></div>');
+        // appends div(circle) to the DOM
+        $('.sortingDiv').append($sortCircle);
+      } else {
+        var $sortSquare = $('<div class="sortSquare" style="width: ' +
+        vm.sortAreaArray[z].length + 'px; height: ' + vm.sortAreaArray[z].length + 'px";></div>');
+        // appends div(square) to the DOM
+        $('.sortingDiv').append($sortSquare);
+      }
+    }
   }; //end of createObjArray function
 
   // generates 50 random sized squares and circles and displays them to the DOM
@@ -135,14 +156,12 @@ myApp.controller('DefaultController', function($interval){
       var ranOrder = Math.floor((Math.random() * 100) + 1);
       if(ranOrder <= 50){
         var ranRadius = Math.floor((Math.random() * 100) + 1);
-        // vm.objectsArray.push(vm.createCircle(ranRadius));
         var $circle = $('<div class="randCircle" style="width: ' +
-        ranRadius + 'px; height: ' + ranRadius + 'px";></div>');
+        (ranRadius * 2) + 'px; height: ' + (ranRadius * 2) + 'px";></div>');
         // appends div(circle) to the DOM
         $('.generateDiv').append($circle);
       } else {
         var ranLength = Math.floor((Math.random() * 100) + 1);
-        // vm.objectsArray.push(vm.createSquare(ranLength));
         var $square = $('<div class="randSquare" style="width: ' +
         ranLength + 'px; height: ' + ranLength + 'px";></div>');
         // appends div(square) to the DOM
@@ -161,8 +180,8 @@ myApp.controller('DefaultController', function($interval){
   vm.clearDiv = function(){
     $('.circle').remove();
     $('.square').remove();
-    $('.randCircle').remove();
-    $('.randSquare').remove();
+    $('.sortCircle').remove();
+    $('.sortSquare').remove();
   };
 
   // clears all user inputs

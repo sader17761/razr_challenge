@@ -5,7 +5,7 @@
       <p>Enter the number of Cirles and Squares you wish to sort (descending by area).</p>
       <input id="numCirclesInput" ng-model="dc.numCircles" type="number" placeholder="Number of Circles">
       <input id="numSquaresInput" ng-model="dc.numSquares" type="number" placeholder="Number of Squares">
-      <button class="btn btn-default" id="sortBtn" ng-click="dc.checkSortInputs(dc.numCircles, dc.numSquares)">Sort</button>
+      <button class="btn btn-default" id="sortBtn" ng-click="dc.checkSortInputs(dc.numCircles, dc.numSquares)">CREATE</button>
     </div> <!-- end col-md-6 -->
   </div> <!-- end row -->
   <div class="row">
@@ -30,5 +30,10 @@
         </tbody>
       </table>
     </div> <!-- end col-md-6 -->
+  </div> <!-- end row -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="sortingDiv"></div>
+    </div> <!-- end col-md-12 -->
   </div> <!-- end row -->
 </div> <!-- end container sortingSection -->
