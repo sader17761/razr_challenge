@@ -14,35 +14,27 @@ myApp.controller('DefaultController', function($interval){
     vm.rotate();
   }, 500);
 
-  // array that will hold random sized circle/square objects
+  // sort function array that will hold random # and size of circle/square objects
   vm.sortAreaArray = [];
+  // generate function array that will hold 50 random sized circle/square objects
   vm.objectsArray = [];
 
+/*  CIRCLE FUNCTIONALITY  */
   // circle object constructor
-  function circle(radius) {
-      this.getArea = function () {
-        // pi times radius squared
-        var area = Math.PI * radius * radius;
-        var roundedArea = area.toFixed(2);
-        return roundedArea;
-      };
-      this.toString = function () {
-        // returns a string
-        return 'Circle: Radius = ' + radius + ', Area = ' + this.getArea();
-      };
+  function Circle(type, radius) {
+    this.type = type;
+    this.radius = radius;
+    this.getArea = function () {
+      // pi times radius squared
+      var area = Math.PI * this.radius * this.radius;
+      var roundedArea = area.toFixed(2);
+      return roundedArea;
+    };
+    this.toString = function () {
+      // returns a string
+      return this.type + ': Radius = ' + this.radius + ', Area = ' + this.getArea();
+    };
   } // end of circle constructor
-
-  // square object constructor
-  function square(length) {
-      this.getArea = function () {
-        // returns the area of the square
-        return length * length;
-      };
-      this.toString = function () {
-        // returns a string
-        return 'Square: Size = ' + length + ' x ' + length + ', Area = ' + this.getArea();
-      };
-  } // end of square constructor
 
   // verifies the circle inputs
   vm.checkCircleInputs = function(radius){
@@ -59,20 +51,32 @@ myApp.controller('DefaultController', function($interval){
 
   // creates a instance of the circle object and display's it on the DOM (depending on the view).
   vm.createCircle = function(radius){
-    var newCircle = new circle(radius);
-    vm.circleObject = {
-      type: 'Circle',
-      radius: radius,
-      area: newCircle.getArea(),
-      string: newCircle.toString()
-    };
+    vm.newCircle = new Circle('Circle', radius);
+    vm.newCircle.toString = vm.newCircle.toString();
+    vm.newCircle.getArea = vm.newCircle.getArea();
+    // creates circle object
     var $circle = $('<div class="circle" style="width: ' +
     (radius * 2) + 'px; height: ' + (radius * 2) + 'px";></div>');
-    // appends div(circle) to the DOM
+    // appends circle object to the '.circleDiv' Div
     $('.circleDiv').append($circle);
     vm.clearInputs();
-    return vm.circleObject;
+    return vm.newCircle;
   };
+
+/*  SQUARE FUNCTIONALITY  */
+  // square object constructor
+  function Square(type, length) {
+    this.type = type;
+    this.length = length;
+    this.getArea = function () {
+      // returns the area of the square
+      return this.length * this.length;
+    };
+    this.toString = function () {
+      // returns a string
+      return 'Square: Size = ' + this.length + ' x ' + this.length + ', Area = ' + this.getArea();
+    };
+  } // end of square constructor
 
   // verifies the square inputs
   vm.checkSquareInputs = function(length){
@@ -89,21 +93,18 @@ myApp.controller('DefaultController', function($interval){
 
   // creates a instance of the square object and display's it on the DOM (depending on the view).
   vm.createSquare = function(length){
-    var newSquare = new square(length);
-    vm.squareObject = {
-      type: 'Square',
-      length: length,
-      area: newSquare.getArea(),
-      string: newSquare.toString()
-    };
+    vm.newSquare = new Square('Square', length);
+    vm.newSquare.toString = vm.newSquare.toString();
+    vm.newSquare.getArea = vm.newSquare.getArea();
     var $square = $('<div class="square" style="width: ' +
     length + 'px; height: ' + length + 'px";></div>');
     // appends div(square) to the DOM
     $('.squareDiv').append($square);
     vm.clearInputs();
-    return vm.squareObject;
+    return vm.newSquare;
   }; // end of createSquare function
 
+/*  SORTING FUNCTION  */
   // verifies sort inputs
   vm.checkSortInputs = function(numCircles, numSquares){
     if(numCircles === '' || numCircles === null || numCircles === undefined || numSquares === '' || numSquares === null || numSquares === undefined) {
@@ -132,7 +133,7 @@ myApp.controller('DefaultController', function($interval){
     } // end of square for loop
     // sorts objects and orders them from large to small based on area.
     vm.sortAreaArray.sort(function(a, b) {
-      return parseFloat(b.area) - parseFloat(a.area);
+      return parseFloat(b.getArea) - parseFloat(a.getArea);
     });
     // loop through array and displays objects to the DOM
     for (var z = 0; z < vm.sortAreaArray.length; z++) {
@@ -150,6 +151,7 @@ myApp.controller('DefaultController', function($interval){
     }
   }; //end of createObjArray function
 
+/*  GENERATE FUNCTION  */
   // generates 50 random sized squares and circles and displays them to the DOM
   vm.randomGenerator = function(){
     for (var i = 1; i <= 100; i++) {
@@ -176,6 +178,7 @@ myApp.controller('DefaultController', function($interval){
     degrees += 10;
   };
 
+/*  CLEAR FUNCTIONALITY  */
   // clears all display divs
   vm.clearDiv = function(){
     $('.circle').remove();
