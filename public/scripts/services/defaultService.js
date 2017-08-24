@@ -20,31 +20,16 @@ myApp.service('DefaultService', function($http){
   sv.objectsArray = [];
 
 /* CIRCLE FUNCTIONALITY */
-  sv.checkCircleInputs = function(radius){
-    console.log('In defaultService with: ', radius);
-    if(radius === '' || radius === null || radius === undefined){
-      alert('Please enter a radius.');
-    } else if(radius <= 0){
-      alert('Please enter a radius greater than 0.');
-      sv.clearInputs();
-    } else {
-      sv.clearDiv();
-      return sv.createCircle(radius);
-    } // end of if/else
-  };
-
   // creates a instance of the circle object and display's it on the DOM (depending on the view).
   sv.createCircle = function(radius){
     sv.newCircle = new Circle('Circle', radius);
     sv.newCircle.toString = sv.newCircle.toString();
     sv.newCircle.getArea = sv.newCircle.getArea();
-    console.log(sv.newCircle);
     // creates circle object
     var $circle = $('<div class="circle" style="width: ' +
     (radius * 2) + 'px; height: ' + (radius * 2) + 'px";></div>');
     // appends circle object to the '.circleDiv' Div
     $('.circleDiv').append($circle);
-    sv.clearInputs();
     return sv.newCircle;
   };
 
@@ -65,19 +50,6 @@ myApp.service('DefaultService', function($http){
   } // end of circle constructor
 
 /* SQUARE FUNCTIONALITY */
-  // verifies the square inputs
-  sv.checkSquareInputs = function(length){
-    if(length === '' || length === null || length === undefined){
-      alert('Please enter a length.');
-    } else if(length <= 0){
-      alert('Please enter a value greater than 0.');
-      sv.clearInputs();
-    } else {
-      sv.clearDiv();
-      return sv.createSquare(length);
-    } // end of if/else
-  }; // end of checkSquareInputs function
-
   // creates a instance of the square object and display's it on the DOM (depending on the view).
   sv.createSquare = function(length){
     sv.newSquare = new Square('Square', length);
@@ -87,7 +59,6 @@ myApp.service('DefaultService', function($http){
     length + 'px; height: ' + length + 'px";></div>');
     // appends div(square) to the DOM
     $('.squareDiv').append($square);
-    sv.clearInputs();
     return sv.newSquare;
   }; // end of createSquare function
 
@@ -106,23 +77,10 @@ myApp.service('DefaultService', function($http){
   } // end of square constructor
 
 /* SORTING FUNCTIONALITY */
-    // verifies sort inputs
-    sv.checkSortInputs = function(numCircles, numSquares){
-      if(numCircles === '' || numCircles === null || numCircles === undefined || numSquares === '' || numSquares === null || numSquares === undefined) {
-        alert('Please enter a value in both fields.');
-      } else if(numCircles <= 0 || numSquares <= 0){
-        alert('Please enter values greater than 0.');
-        sv.clearInputs();
-      } else {
-        sv.clearDiv();
-        sv.sortAreaArray = [];
-        sv.createObjArray(numCircles, numSquares);
-        return sv.sortAreaArray;
-      } // end of if/else
-    }; // end of checkSortInputs function
-
     // takes in inputs from user and creates random sized circles and squares and adds them to an array which gets displayed and sorted by area in descending order.
     sv.createObjArray = function(numCircles, numSquares){
+      // clear array
+      sv.sortAreaArray = [];
       // for loop that randomly generates circles
       for (var i = 1; i <= numCircles; i++) {
         var ranRadius = Math.floor((Math.random() * 100) + 1);
@@ -133,7 +91,7 @@ myApp.service('DefaultService', function($http){
         var ranLength = Math.floor((Math.random() * 100) + 1);
         sv.sortAreaArray.push(sv.createSquare(ranLength));
       } // end of square for loop
-        // sorts objects and orders them from large to small based on area.
+      // sorts objects and orders them from large to small based on area.
       sv.sortAreaArray.sort(function(a, b) {
         return parseFloat(b.getArea) - parseFloat(a.getArea);
       });
@@ -151,6 +109,7 @@ myApp.service('DefaultService', function($http){
           $('.sortingDiv').append($sortSquare);
         } // end if/else
       } // end for loop
+      return sv.sortAreaArray;
     }; //end of createObjArray function
 
 /* GENERATE FUNCTIONALITY */
@@ -178,23 +137,6 @@ myApp.service('DefaultService', function($http){
     sv.rotate = function(){
       $(".randSquare").css({'transform': 'rotate(' + degrees + 'deg)'});
       degrees += 10;
-    };
-
-/* CLEAR FUNCTIONALITY */
-    // clears all display divs
-    sv.clearDiv = function(){
-      $('.circle').remove();
-      $('.square').remove();
-      $('.sortCircle').remove();
-      $('.sortSquare').remove();
-    };
-
-    // clears all user inputs
-    sv.clearInputs = function(){
-      sv.radiusInput = '';
-      sv.lengthInput = '';
-      sv.numCircles = '';
-      sv.numSquares = '';
     };
 
 }); // end of DefaultService

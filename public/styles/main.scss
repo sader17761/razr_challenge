@@ -15,15 +15,24 @@ $circle: #0018bb;
 .navbar-nav {
   padding-top: 5px !important;
 }
-.razrlogo img{
-  width: 100%;
-  margin-top: 250px;
+.navbar-inverse .navbar-nav>li>a:hover{
+  color: $primary;
 }
-.title h1 {
-  font-size: 72px;
+.navbarLogo{
+  color: $primary;
+}
+.razrlogo {
+  height: 100vh;
+}
+.razrlogo img {
+  width: 100%;
+  margin: 30% 0 0 0;
+}
+.razrlogo h1 {
+  font-size: 80px;
   font-weight: 600;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 10px;
   color: $primary;
 }
 .home {
