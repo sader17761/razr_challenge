@@ -5,12 +5,12 @@
       <p>Enter the number of Cirles and Squares you wish to sort (descending by area).</p>
       <input id="numCirclesInput" ng-model="dc.numCircles" type="number" placeholder="Number of Circles">
       <input id="numSquaresInput" ng-model="dc.numSquares" type="number" placeholder="Number of Squares">
-      <button class="btn btn-default" id="sortBtn" ng-click="dc.checkSortInputs(dc.numCircles, dc.numSquares)">CREATE</button>
+      <button class="btn btn-default" id="sortBtn" ng-click="dc.createSortObjects(dc.numCircles, dc.numSquares)">CREATE</button>
     </div> <!-- end col-md-6 -->
   </div> <!-- end row -->
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <table class="table" ng-if="dc.sortAreaArray.length != 0">
+      <table class="table" ng-if="dc.newArray.length != 0">
         <thead>
           <tr>
             <th>Index</th>
@@ -20,8 +20,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="shape in dc.sortAreaArray">
-            <td>{{dc.sortAreaArray.indexOf(shape)+1}}</td>
+          <tr ng-repeat="shape in dc.newArray">
+            <td>{{dc.newArray.indexOf(shape)+1}}</td>
             <td>{{shape.type}}</td>
             <td ng-if="shape.radius">Radius = {{shape.radius}}</td>
             <td ng-if="shape.length">Length = {{shape.length}}</td>
