@@ -2,7 +2,8 @@ var myApp = angular.module('myApp');
 
 myApp.controller('DefaultController', function(DefaultService){
   var vm = this;
-
+  vm.newArray = [];
+  
   // verifies the circle inputs
   vm.createCircle = function(radius){
     if(radius === '' || radius === null || radius === undefined){
